@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  uwsgi_centos:
+    build:
+      context: .
+      dockerfile: .Dockerfile
+    volumes:
+      - '.:/app'
+    container_name: uwsgi_centos
+    working_dir: /app
+    command: uwsgi --socket 0.0.0.0:8080 --protocol=http -w wsgi
+    ports:
+      - "8080:8080"
